@@ -1,0 +1,22 @@
+<p class="login-box-msg">
+    セッションを開始するにはサインインしてください。
+</p>
+
+<form [formGroup]="userLoginForm" (submit)="login()">
+    <div class="form-group has-feedback" [ngClass]="{'has-error': userLoginForm.get('email').touched && !userLoginForm.get('email').valid}">
+        <input formControlName="email" type="text" class="form-control" placeholder="メール">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+    </div>
+    <div class="form-group has-feedback" [ngClass]="{'has-error': userLoginForm.get('password').touched && !userLoginForm.get('password').valid}">
+        <input formControlName="password" type="password" class="form-control" placeholder="パスワード">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+    </div>
+    <div class="row">
+        <div class="col-xs-8"></div>
+        <div class="col-xs-4">
+            <button [disabled]="!userLoginForm.valid" type="submit" class="btn btn-primary btn-block btn-flat">
+                ログイン
+            </button>
+        </div>
+    </div>
+</form>

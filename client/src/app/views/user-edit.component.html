@@ -1,0 +1,156 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">基本情報</h3>
+            </div>
+            <form [formGroup]="userUpdateForm" (submit)="updateUser()" class="form-horizontal" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="id">
+                            ID
+                        </label>
+                        <div class="col-sm-5">
+                            <label class="control-label">
+                                {{ userUpdateForm.get('id').value }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('email').touched && !userUpdateForm.get('email').valid}">
+                        <label class="col-sm-2 control-label" for="email">
+                            メールアドレス
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="email" id="email" class="form-control input-sm" maxlength="255" type="text" />
+                            <control-messages name="メールアドレス" [control]="userUpdateForm.controls.email"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('password').touched && !userUpdateForm.get('password').valid}">
+                        <label class="col-sm-2 control-label" for="password">
+                            パスワード
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="password" id="password" class="form-control input-sm" maxlength="128" type="password" />
+                            <control-messages name="パスワード" [control]="userUpdateForm.controls.password"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('password_confirm').touched && !userUpdateForm.get('password_confirm').valid}">
+                        <label class="col-sm-2 control-label" for="password-confirm">
+                            確認パスワード
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="password_confirm" id="password-confirm" class="form-control input-sm" maxlength="128" type="password"
+                            />
+                            <control-messages name="確認パスワード" [control]="userUpdateForm.controls.password_confirm"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('first_name').touched && !userUpdateForm.get('first_name').valid}">
+                        <label class="col-sm-2 control-label" for="first_name">
+                            苗字
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="first_name" id="first_name" class="form-control input-sm" maxlength="45" type="text" />
+                            <control-messages name="苗字" [control]="userUpdateForm.controls.first_name"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('last_name').touched && !userUpdateForm.get('last_name').valid}">
+                        <label class="col-sm-2 control-label" for="last_name">
+                            名前
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="last_name" id="last_name" class="form-control input-sm" maxlength="45" type="text" />
+                            <control-messages name="名前" [control]="userUpdateForm.controls.last_name"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('date_of_birth').touched && !userUpdateForm.get('date_of_birth').valid}">
+                        <label class="col-sm-2 control-label" for="date_of_birth">
+                            生年月日
+                        </label>
+                        <div class="col-sm-5">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input formControlName="date_of_birth" id="date_of_birth" class="form-control pull-right" type="text" />
+                            </div>
+                            <control-messages name="生年月日" [control]="userUpdateForm.controls.date_of_birth"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': userUpdateForm.get('avatar').touched && !userUpdateForm.get('avatar').valid}">
+                        <label class="col-sm-2 control-label" for="avatar">
+                            アバター
+                        </label>
+                        <div class="col-sm-5">
+                            <input id="avatar" type="file" (change)="fileChangeEvent($event)" />
+                            <control-messages name="アバター" [control]="userUpdateForm.controls.avatar"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="gender-male">
+                            性別
+                        </label>
+                        <div class="col-sm-5">
+                            <div class="radio">
+                                <label>
+                                    <input formControlName="gender" id="gender-male" value="1" class="minimal" type="radio" /> 男性
+                                </label>
+                                <label>
+                                    <input formControlName="gender" id="gender-female" value="0" class="minimal" type="radio" /> 女性
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="role">
+                            役割
+                        </label>
+                        <div class="col-sm-5">
+                            <select formControlName="role" id="role" class="form-control">
+                                <option *ngFor="let role of (roles | keys)" [value]="role.key">
+                                    {{ role.value }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="note">
+                            音符
+                        </label>
+                        <div class="col-sm-5">
+                            <textarea formControlName="note" id="note" rows="3" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="created">
+                            更新日付
+                        </label>
+                        <div class="col-sm-5">
+                            <label class="control-label">
+                                {{ userUpdateForm.get('created').value }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="updated">
+                            作成日付
+                        </label>
+                        <div class="col-sm-5">
+                            <label class="control-label">
+                                {{ userUpdateForm.get('updated').value }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
+                            <a routerLink="/user" class="btn btn-default">戻る</a>
+                            <button [disabled]="!userUpdateForm.valid" type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

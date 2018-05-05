@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-5">
+        <div class="dataTables_info">
+            {{ paging.count }}の項目の{{ (paging.limit * (paging.page - 1)) + 1 }}に{{ (paging.limit * (paging.page - 1)) + paging.current }}のを示す。
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+                <li [ngClass]="{disabled: !(paging.page > 1)}" class="prev">
+                    <div *ngIf="paging.page > 1;then isfirst else notfirst"></div>
+                    <ng-template #isfirst>
+                        <a href="javascript:void(0)" (click)="changePage(1)">前</a>
+                    </ng-template>
+                    <ng-template #notfirst>
+                        <a href="javascript:void(0)">前</a>
+                    </ng-template>
+                </li>
+                <li *ngFor="let page of pages" [ngClass]="{active: (page == paging.page)}">
+                    <div *ngIf="page !== paging.page;then iscurrent else notcurrent"></div>
+                    <ng-template #iscurrent>
+                        <a href="javascript:void(0)" (click)="changePage(page)">{{ page }}</a>
+                    </ng-template>
+                    <ng-template #notcurrent>
+                        <a href="javascript:void(0)">{{ page }}</a>
+                    </ng-template>
+                </li>
+                <li [ngClass]="{disabled: !(paging.page < paging.pageCount)}" class="next">
+                    <div *ngIf="paging.page < paging.pageCount;then islast else notlast"></div>
+                    <ng-template #islast>
+                        <a href="javascript:void(0)" (click)="changePage(paging.page + 1)">次</a>
+                    </ng-template>
+                    <ng-template #notlast>
+                        <a href="javascript:void(0)">次</a>
+                    </ng-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

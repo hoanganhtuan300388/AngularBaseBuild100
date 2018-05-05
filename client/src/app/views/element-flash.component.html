@@ -1,0 +1,9 @@
+<div [ngClass]="flash.display === true ? flash.wrapClassName : 'disabled'" class="alert alert-dismissible">
+    <button type="button" class="close" (click)="close()">×</button>
+    <h4>
+        <i [ngClass]="flash.iconClassName" class="icon fa"></i> {{ flash.message }}
+    </h4>
+    <span *ngFor="let error of (flash.errors | keys)">
+        {{ error.value[0] }}
+    </span>
+</div>

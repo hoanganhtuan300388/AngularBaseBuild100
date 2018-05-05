@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">基本情報</h3>
+            </div>
+            <form [formGroup]="categoryUpdateForm" (submit)="updateCategory()" class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="id">
+                            ID
+                        </label>
+                        <div class="col-sm-5">
+                            <label class="control-label">
+                                {{ categoryUpdateForm.get('id').value }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': categoryUpdateForm.get('name').touched && !categoryUpdateForm.get('name').valid}">
+                        <label class="col-sm-2 control-label" for="name">
+                            カテゴリー名
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="name" id="name" class="form-control input-sm" maxlength="255" type="text" />
+                            <control-messages name="カテゴリー名" [control]="categoryUpdateForm.controls.name"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': categoryUpdateForm.get('slug').touched && !categoryUpdateForm.get('slug').valid}">
+                        <label class="col-sm-2 control-label" for="slug">
+                            蛞蝓
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="slug" id="slug" class="form-control input-sm" maxlength="255" type="text" />
+                            <control-messages name="蛞蝓" [control]="categoryUpdateForm.controls.slug"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="parent_id">
+                            役割
+                        </label>
+                        <div class="col-sm-5">
+                            <select formControlName="parent_id" id="parent_id" class="form-control">
+                                <option *ngFor="let parent of (parents | keys)" [value]="parent.key">
+                                    {{ parent.value }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="description">
+                            叙述
+                        </label>
+                        <div class="col-sm-5">
+                            <textarea formControlName="description" id="description" rows="3" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="created">
+                            更新日付
+                        </label>
+                        <div class="col-sm-5">
+                            <label class="control-label">
+                                {{ categoryUpdateForm.get('created').value }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="updated">
+                            作成日付
+                        </label>
+                        <div class="col-sm-5">
+                            <label class="control-label">
+                                {{ categoryUpdateForm.get('updated').value }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
+                            <a routerLink="/category" class="btn btn-default">戻る</a>
+                            <button [disabled]="!categoryUpdateForm.valid" type="submit" class="btn btn-primary">登録</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

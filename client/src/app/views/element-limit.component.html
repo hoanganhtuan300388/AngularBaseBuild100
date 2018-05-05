@@ -1,0 +1,6 @@
+表示件数
+<select class="input-sm" (change)="changeLimit($event.target.value)">
+    <option *ngFor="let i of limits" [selected]="i === limit">
+        {{ i }}    
+    </option>
+</select>

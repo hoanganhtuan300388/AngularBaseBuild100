@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">基本情報</h3>
+            </div>
+            <form class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            ID
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['id'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            メールアドレス
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['email'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            苗字
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['first_name'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            名前
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['last_name'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            生年月日
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['date_of_birth'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            アバター
+                        </label>
+                        <div class="col-sm-5">
+                            1
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            性別
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['gender'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            役割
+                        </label>
+                        <div class="col-sm-5">
+                            {{ roles[userLogin.userLogged['role']] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            音符
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['note'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            更新日付
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['created'] }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            作成日付
+                        </label>
+                        <div class="col-sm-5">
+                            {{ userLogin.userLogged['updated'] }}
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
+                            <a routerLink="/user" class="btn btn-default">戻る</a>
+                            <a routerLink="/user/edit/{{ userLogin.userLogged['id'] }}" class="btn btn-primary">編集</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

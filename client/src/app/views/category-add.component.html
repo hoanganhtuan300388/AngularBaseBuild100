@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">基本情報</h3>
+            </div>
+            <form [formGroup]="categoryAddForm" (submit)="createCategory()" class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group" [ngClass]="{'has-error': categoryAddForm.get('name').touched && !categoryAddForm.get('name').valid}">
+                        <label class="col-sm-2 control-label" for="name">
+                            カテゴリー名
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="name" id="name" class="form-control input-sm" maxlength="255" type="text" />
+                            <control-messages name="カテゴリー名" [control]="categoryAddForm.controls.name"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error': categoryAddForm.get('slug').touched && !categoryAddForm.get('slug').valid}">
+                        <label class="col-sm-2 control-label" for="slug">
+                            蛞蝓
+                        </label>
+                        <div class="col-sm-5">
+                            <input formControlName="slug" id="slug" class="form-control input-sm" maxlength="255" type="text" />
+                            <control-messages name="蛞蝓" [control]="categoryAddForm.controls.slug"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="parent_id">
+                            役割
+                        </label>
+                        <div class="col-sm-5">
+                            <select formControlName="parent_id" id="parent_id" class="form-control">
+                                <option *ngFor="let parent of (parents | keys)" [value]="parent.key">
+                                    {{ parent.value }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="description">
+                            叙述
+                        </label>
+                        <div class="col-sm-5">
+                            <textarea formControlName="description" id="description" rows="3" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
+                            <a routerLink="/category" class="btn btn-default">戻る</a>
+                            <button [disabled]="!categoryAddForm.valid" type="submit" class="btn btn-primary">登録</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
